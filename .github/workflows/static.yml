@@ -1,0 +1,43 @@
+# Simple workflow for deploying static content to GitHub Pages
+-：将静态内容部署到页面
+
+#在以默认分支为目标的推送上运行# Runs on pushes targeting the default branch
+on:
+  push::
+    branches: ["master"]: ["master"]
+
+#允许您从“操作”选项卡手动运行此工作流#允许您从[动作]索引标签手动执行此工作流程
+  workflow_dispatch::
+
+#设置GitHub_TOKEN的权限以允许部署到GitHub页面
+permissions::
+内容：已读：读
+页面：写入：写
+  id-token: write: write
+
+#只允许一个并发部署，跳过正在运行和最新排队之间排队的运行。
+#但是，不要取消正在进行的运行，因为我们希望允许这些生产部署完成。
+concurrency::
+组：“”页“”: "pages"
+正在取消：false: false
+
+jobs::
+#单部署作业，因为我们刚刚部署# Single deploy job since we're just deploying
+  deploy::
+    environment::
+名称：github-pages：github-pages
+URL：${{台阶。部署。输出.页面URL(_U)}}：${{ steps.deployment.outputs.page_url }}
+连续的：u短打u-最新的：Ubuntu-最新
+    steps::
+-名称：结帐名称：结帐
+用途：操作/签出@v4：操作/结帐@v4
+-名称：设置页面名称：安装页表面
+用法：操作/conf我gure-pages@v5：操作/配置-pages@v5
+-名称：上传工件name: Upload artifact
+        with:
+uses usesactions/upload-pages-artifact@v3:
+#上传整个资源库# Upload entire repository
+          path: '.': '.'
+-名称：部署到GitHub页面name: Deploy to GitHub Pages
+ID：部门: deployment
+        uses: actions/deploy-pages@v5: actions/deploy-pages@v5
