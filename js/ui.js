@@ -1,15 +1,23 @@
-const spinBtn = document.getElementById('spinBtn');
-const restartBtn = document.getElementById('restartBtn');
-const logContent = document.getElementById('logContent');
+var spinBtn = document.getElementById('spinBtn');
+var restartBtn = document.getElementById('restartBtn');
+var logContent = document.getElementById('logContent');
 
 function updateStatusUI() {
-    document.getElementById('status-name').innerText = playerState.name;
+    playerNameInput.value = playerState.name;
+    if (playerState.level > 1 || playerState.wuhun !== '未觉醒') {
+        playerNameInput.readOnly = true;
+        playerNameInput.style.opacity = '0.7';
+    } else {
+        playerNameInput.readOnly = false;
+        playerNameInput.style.opacity = '1';
+    }
     document.getElementById('status-level').innerText = playerState.level + " 级";
     document.getElementById('status-rank').innerText = playerState.rank;
     document.getElementById('status-wuhun').innerText = playerState.wuhun;
     document.getElementById('status-aptitude').innerText = playerState.aptitude;
     document.getElementById('status-training').innerText = playerState.training;
     document.getElementById('status-faction').innerText = playerState.faction;
+    document.getElementById('status-soulpower').innerText = playerState.soulPower;
 
     const ringSlots = document.getElementById('ringSlots');
     if (playerState.rings.length === 0) {
@@ -32,18 +40,8 @@ function updateStatusUI() {
 
 function updateStage() {
     const stage = stages[currentStageIndex];
-    document.getElementById('stage-title').innerText = `阶段 ${currentStageIndex + 1}：${stage.title}`;
+    document.getElementById('stage-title').innerText = stage.title;
     spinBtn.innerText = stage.btnLabel;
-
-    document.querySelectorAll('.step').forEach((el, idx) => {
-        if (idx < currentStageIndex) {
-            el.className = 'step completed';
-        } else if (idx === currentStageIndex) {
-            el.className = 'step active';
-        } else {
-            el.className = 'step';
-        }
-    });
 
     drawWheel(stage.getOptions());
 }

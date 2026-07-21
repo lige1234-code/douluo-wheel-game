@@ -52,6 +52,12 @@ function spin() {
     isSpinning = true;
     spinBtn.disabled = true;
 
+    // 同步输入框中的名字
+    const inputName = playerNameInput.value.trim();
+    if (inputName) {
+        playerState.name = inputName;
+    }
+
     const stage = stages[currentStageIndex];
     const options = stage.getOptions();
     const numSegments = options.length;
@@ -68,6 +74,8 @@ function spin() {
     setTimeout(() => {
         const selectedOption = options[winIndex];
         stage.onSelect(selectedOption);
+        updateStatusUI();
+        saveGame();
 
         isSpinning = false;
         

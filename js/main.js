@@ -1,12 +1,19 @@
+var playerNameInput = document.getElementById('playerNameInput');
+
 function generateRandomName() {
     const s = surnames[Math.floor(Math.random() * surnames.length)];
     const n = names[Math.floor(Math.random() * names.length)];
     return s + n;
 }
 
+function getPlayerName() {
+    const input = playerNameInput.value.trim();
+    return input || generateRandomName();
+}
+
 function initGame() {
     playerState = {
-        name: generateRandomName(),
+        name: getPlayerName(),
         level: 1,
         rank: '凡人',
         wuhun: '未觉醒',
@@ -15,7 +22,8 @@ function initGame() {
         training: '无',
         faction: '未加入',
         rings: [],
-        boneCount: 0
+        boneCount: 0,
+        soulPower: 10
     };
 
     currentStageIndex = 0;
@@ -26,13 +34,30 @@ function initGame() {
     
     spinBtn.style.display = 'inline-block';
     spinBtn.disabled = false;
-    restartBtn.style.display = 'none';
 
     updateStatusUI();
     updateStage();
+    saveGame();
 }
 
 spinBtn.addEventListener('click', spin);
 restartBtn.addEventListener('click', initGame);
 
-window.onload = initGame;
+// 启动时尝试加载存档，没有则新开
+window.onload = () => {
+    const loaded = loadGame();
+    if (!loaded) {
+        initGame();
+    }
+
+    document.getElementById('exportBtn').addEventListener('click', exportToTxt);
+    document.getElementById('importBtn').addEventListener('click', () => {
+        document.getElementById('importFile').click();
+    });
+    document.getElementById('importFile').addEventListener('change', (e) => {
+        if (e.target.files.length > 0) {
+            importFromTxt(e.target.files[0]);
+            e.target.value = '';
+        }
+    });
+};
