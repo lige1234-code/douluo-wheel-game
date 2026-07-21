@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>斗罗大陆：百级成神之路</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="game-container">
+    <header>
+        <h1>斗罗大陆：百级成神之路</h1>
+        <p>历经九重转盘，从1级废柴魂士向100级神界至尊发起冲击！</p>
+    </header>
+
+    <div class="progress-bar" id="progressBar">
+        <span class="step active" id="step-0">1.武魂觉醒</span>
+        <span class="step" id="step-1">2.先天魂力</span>
+        <span class="step" id="step-2">3.魂师起步</span>
+        <span class="step" id="step-3">4.中阶历练</span>
+        <span class="step" id="step-4">5.精英大赛</span>
+        <span class="step" id="step-5">6.极境修炼</span>
+        <span class="step" id="step-6">7.真身觉醒</span>
+        <span class="step" id="step-7">8.巅峰斗罗</span>
+        <span class="step" id="step-8">9.神祇降临</span>
+    </div>
+
+    <div class="main-layout">
+        <div class="status-panel">
+            <h2>魂师简谱</h2>
+            <div class="status-item">
+                <span class="status-label">魂师尊名：</span>
+                <span class="status-value" id="status-name">-</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">当前魂力：</span>
+                <span class="status-value" id="status-level" style="color:#00ffff;">1 级</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">当前境界：</span>
+                <span class="status-value" id="status-rank">凡人</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">传承武魂：</span>
+                <span class="status-value" id="status-wuhun">未觉醒</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">先天资质：</span>
+                <span class="status-value" id="status-aptitude">未测试</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">历练行迹：</span>
+                <span class="status-value" id="status-training">未开始</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">所属阵营：</span>
+                <span class="status-value" id="status-faction">未加入</span>
+            </div>
+
+            <div class="ring-container">
+                <div class="ring-title">已吸收魂环：</div>
+                <div class="ring-slots" id="ringSlots">
+                    <span style="color:#4b5563; font-size:11px;">尚无魂环</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="wheel-area">
+            <h3 id="stage-title" style="margin:0; color:#ffd700; font-size:16px;">第一阶段</h3>
+            <div class="wheel-outer">
+                <div class="pointer"></div>
+                <canvas id="wheelCanvas" width="312" height="312"></canvas>
+            </div>
+            <button class="spin-btn" id="spinBtn">开始觉醒</button>
+            <button class="spin-btn" id="restartBtn">逆天改命 (重来)</button>
+        </div>
+
+        <div class="log-panel">
+            <h2>命运烙印</h2>
+            <div class="log-content" id="logContent"></div>
+        </div>
+    </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/state.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/wheel.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
