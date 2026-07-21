@@ -14,24 +14,12 @@
         <p>历经九重转盘，从1级废柴魂士向100级神界至尊发起冲击！</p>
     </header>
 
-    <div class="progress-bar" id="progressBar">
-        <span class="step active" id="step-0">1.武魂觉醒</span>
-        <span class="step" id="step-1">2.先天魂力</span>
-        <span class="step" id="step-2">3.魂师起步</span>
-        <span class="step" id="step-3">4.中阶历练</span>
-        <span class="step" id="step-4">5.精英大赛</span>
-        <span class="step" id="step-5">6.极境修炼</span>
-        <span class="step" id="step-6">7.真身觉醒</span>
-        <span class="step" id="step-7">8.巅峰斗罗</span>
-        <span class="step" id="step-8">9.神祇降临</span>
-    </div>
-
     <div class="main-layout">
         <div class="status-panel">
             <h2>魂师简谱</h2>
             <div class="status-item">
                 <span class="status-label">魂师尊名：</span>
-                <span class="status-value" id="status-name">-</span>
+                <input type="text" id="playerNameInput" placeholder="输入你的名字" maxlength="6" style="background:#1f2937; border:1px solid #4b5563; color:#fff; padding:2px 6px; border-radius:4px; width:100px; font-size:12px;">
             </div>
             <div class="status-item">
                 <span class="status-label">当前魂力：</span>
@@ -57,6 +45,10 @@
                 <span class="status-label">所属阵营：</span>
                 <span class="status-value" id="status-faction">未加入</span>
             </div>
+            <div class="status-item">
+                <span class="status-label">魂力值：</span>
+                <span class="status-value" id="status-soulpower" style="color:#00ff88;">10</span>
+            </div>
 
             <div class="ring-container">
                 <div class="ring-title">已吸收魂环：</div>
@@ -74,6 +66,11 @@
             </div>
             <button class="spin-btn" id="spinBtn">开始觉醒</button>
             <button class="spin-btn" id="restartBtn">逆天改命 (重来)</button>
+            <div class="save-buttons">
+                <button class="save-btn" id="exportBtn" title="导出为txt文件">📤 导出档案</button>
+                <button class="save-btn" id="importBtn" title="从txt文件导入">📥 导入档案</button>
+                <input type="file" id="importFile" accept=".txt" style="display:none">
+            </div>
         </div>
 
         <div class="log-panel">
@@ -83,11 +80,12 @@
     </div>
 </div>
 
-<script src="js/data.js"></script>
-<script src="js/state.js"></script>
-<script src="js/ui.js"></script>
-<script src="js/wheel.js"></script>
-<script src="js/main.js"></script>
+<script src="js/data.js?v=2"></script>
+<script src="js/state.js?v=2"></script>
+<script src="js/ui.js?v=2"></script>
+<script src="js/wheel.js?v=2"></script>
+<script src="js/save.js?v=2"></script>
+<script src="js/main.js?v=2"></script>
 
 </body>
 </html>
